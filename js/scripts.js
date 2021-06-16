@@ -28,7 +28,7 @@ class DepositCalculate {
     return (Date.UTC(start.getFullYear(), start.getMonth(), start.getDate()) - Date.UTC(start.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000;
   }
   getdepositResult(depositSum, percentage, term, daysInYear) {
-    return (depositSum * percentage * term) / daysInYear;
+    return ((depositSum * percentage * term) / daysInYear)/100;
   }
   /**
    * @param {number} newValue
@@ -117,7 +117,7 @@ function setEventListenersValue() {
       return
     }
     else {
-      document.querySelector('.deposit_result_finally').innerHTML = calculate.getdepositResult(calculate.setDepositSum, calculate.setPercentage, calculate.getTermDays(calculate.setTerm), calculate.getDaysInYear())
+      document.querySelector('.deposit_result_finally').innerHTML =` ${calculate.getdepositResult(calculate.setDepositSum, calculate.setPercentage, calculate.getTermDays(calculate.setTerm), calculate.getDaysInYear())} ${calculate.setActiveCurrency}`
       document.querySelector('.customer_name').innerHTML = calculate.setName;
     }
   });
