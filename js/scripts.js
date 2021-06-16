@@ -117,7 +117,11 @@ function setEventListenersValue() {
       return
     }
     else {
-      document.querySelector('.deposit_result_finally').innerHTML =` ${calculate.getdepositResult(calculate.setDepositSum, calculate.setPercentage, calculate.getTermDays(calculate.setTerm), calculate.getDaysInYear())} ${calculate.setActiveCurrency}`
+      document.querySelector('.deposit_result_finally').innerHTML =
+      ` ${calculate.getdepositResult(calculate.setDepositSum,
+         calculate.setPercentage, 
+         calculate.getTermDays(calculate.setTerm),
+          calculate.getDaysInYear())} ${calculate.setActiveCurrency}`
       document.querySelector('.customer_name').innerHTML = calculate.setName;
     }
   });
