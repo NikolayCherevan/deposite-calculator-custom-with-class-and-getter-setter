@@ -1,59 +1,126 @@
-
-
-var btnres = document.querySelector (".result");
-var namewrite = document.querySelector (".freename");
-var resultfinnaly = document.querySelector (".freeresult");
-
-
-var dollars = 25;
-var euro = 30;
-var grn = 1;
-var course = 0;
-var onemonth = 0.4;
-var sixmonth = 2.5;
-var tweentymonth = 5;
-var percent = 0;
-var rozrahynok = 0;
-var nmonth =0;
-
-
-
-btnres.addEventListener ("click", function() {
-var formname = document.getElementById("name").value;
-namewrite.innerHTML =formname;
-if (document.getElementById('r1').checked) {
-    course = dollars;
+class DepositCalculate {
+  constructor(
+    dolarCurrency,
+    euroCurrency,
+    uahCurrency,
+    dolarPercentage,
+    euroPercentage,
+    uahPercentage) {
+    this.dolarCurrency = dolarCurrency;
+    this.euroCurrency = euroCurrency;
+    this.uahCurrency = uahCurrency;
+    this.dolarPercentage = dolarPercentage;
+    this.euroPercentage = euroPercentage;
+    this.uahPercentage = uahPercentage;
+    this.term = null;
+    this.name = null;
+    this.depositResult = null;
+    this.depositSum = null;
+    this.activeCurrency = null;
+    this.currentPercentage = null;
   }
-  if (document.getElementById('r2').checked) {
-    course = euro;
+  getTermDays(term) {
+    return term * this.getDaysInYear() / 12;
   }
-  if (document.getElementById('r3').checked) {
-    course = grn;
+  getDaysInYear() {
+    var now = new Date();
+    var start = new Date(now.getFullYear(), 0, 0);
+    return (Date.UTC(start.getFullYear(), start.getMonth(), start.getDate()) - Date.UTC(start.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000;
   }
-  
+  getdepositResult(depositSum, percentage, term, daysInYear) {
+    return (depositSum * percentage * term) / daysInYear;
+  }
+  /**
+   * @param {number} newValue
+   */
+  set setTerm(newValue) {
+    this.term = newValue;
+  }
+  /**
+  * @param {number} newValue
+  */
+  set setPercentage(newValue) {
+    this.currentPercentage = newValue
+  }
+  /**
+   * @param {string} newValue
+   */
+  set setName(newValue) {
+    this.name = newValue;
+  }
+  /**
+   * @param {number} newValue
+   */
+  set setDepositSum(newValue) {
+    this.depositSum = newValue;
+  }
+  /**
+   * @param {number} newValue
+   */
+  set setActiveCurrency(newValue) {
+    this.activeCurrency = newValue;
+  }
 
-  if (document.getElementById('r4').checked) {
-    nmonth = 1;
-    percent = onemonth;
+  get setTerm() {
+    return this.term;
   }
-  if (document.getElementById('r5').checked) {
-    nmonth = 6;
-    percent = sixmonth;
-  }
-  if (document.getElementById('r6').checked) {
-    nmonth = 12;
-    percent = tweentymonth;
-  }
-  if (course = grn) {
-      
-     percent=10;
-  }
-  
 
-  var depos = document.querySelector (".sumdeposite").value;
-   zaonemonth = depos*(percent/100)/12*nmonth; // delta
-   rozrahynok = eval(depos*1 + zaonemonth*1);
-    resultfinnaly.innerHTML =rozrahynok;
-});
+  get setName() {
+    return this.name;
+  }
 
+  get setDepositSum() {
+    return this.depositSum;
+  }
 
+  get setActiveCurrency() {
+    return this.activeCurrency;
+  }
+  get setPercentage() {
+    return this.currentPercentage;
+  }
+}
+
+function setEventListenersValue() {
+  document.getElementById('name').addEventListener('change', function (event) {
+    calculate.setName = event.target.value
+  });
+  document.querySelectorAll('[name="currency"]').forEach(item => {
+    item.addEventListener('change', function (event) {
+      calculate.setActiveCurrency = event.target.value
+      let currency = calculate.setActiveCurrency;
+      switch (true) {
+        case currency === 'dollar': {
+          return calculate.setPercentage = 5;
+        }
+        case currency === 'uah': {
+          return calculate.setPercentage = 10;
+        }
+        case currency === 'euro': {
+          return calculate.setPercentage = 5;
+        }
+      }
+
+    })
+  })
+  document.querySelectorAll('[name="term"]').forEach(item => {
+    item.addEventListener('change', function (event) {
+      calculate.setTerm = event.target.value
+    })
+  })
+  document.getElementById('sum_of_deposite').addEventListener('change', function (event) {
+    calculate.setDepositSum = event.target.value
+  });
+  document.getElementById('get_deposit_result').addEventListener('click', function (event) {
+    if (!calculate.setName || !calculate.setDepositSum || !calculate.setActiveCurrency || !calculate.setTerm) {
+      alert('есть незаполненные поля')
+      return
+    }
+    else {
+      document.querySelector('.deposit_result_finally').innerHTML = calculate.getdepositResult(calculate.setDepositSum, calculate.setPercentage, calculate.getTermDays(calculate.setTerm), calculate.getDaysInYear())
+      document.querySelector('.customer_name').innerHTML = calculate.setName;
+    }
+  });
+}
+let calculate = new DepositCalculate(27, 30, 1, 5, 5, 10);
+setEventListenersValue()

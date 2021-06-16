@@ -1,4 +1,5 @@
-_<!DOCTYPE html>
+_
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,72 +8,50 @@ _<!DOCTYPE html>
     <title>Document</title>
     <link href="css/styles.css" rel="stylesheet">
 </head>
-
 <div class="header">
-        <div class="container">
-    <h1 class="header-title"> Deposit calc </h1>
-</div>
+    <div class="container">
+        <h1 class="header-title"> Deposit calc </h1>
+    </div>
 </div>
 <body>
-<div class="container">
- <div class="grid">
-    <div class="aside"><h2 class="course">Курсы валют</h2>
-    <p>Долар по 25. Под 5 % годовых</p>
-    <p>Евро 30. Под 5 % годовых </p>
-    <p>Гривна. Под 10 % годовых </p>
-</div>
+    <div class="container">
+        <div class="grid">
+            <div class="aside">
+                <h2 class="course">Курсы валют</h2>
+                <p>Долар по 25. Под 5 % годовых</p>
+                <p>Евро 30. Под 5 % годовых </p>
+                <p>Гривна. Под 10 % годовых </p>
+            </div>
+            <div class="article">
+                <form class="calc">
+                    <p> Ваше имя: </p>
+                    <input id="name" placeholder="Ваше имя"> </input>
+                    <p> Валюта депозита: </p>
+                    <input required name="currency" value="dollar" type="radio"> Dollars
+                    <input required name="currency" value="euro" type="radio"> Euro
+                    <input required name="currency" value="uah" type="radio"> UAH
+                    <p> Сумма депозита:(в грн)</p>
+                    <input required id="sum_of_deposite" placeholder="Сумма депозита в грн"> </input>
+                    <p> Срок депозита</p>
+                    <input required name="term" value="1" type="radio"> 1 mon
+                    <input required name="term" value="6" type="radio"> 6 mon
+                    <input required name="term" value="12" type="radio"> 12 mon
+                    <br>
+                    <input type="button" id="get_deposit_result" value="Рассчитать"> </input>
+                    <p> Добрый день, <span class="customer_name"> </span></p>
+                    <p> Результат депозита: <span class="deposit_result_finally"></span> </p>
+                </form>
+            </div>
 
-
-    <div class="article">
-        <form class="calc">
-
-            <p> Ваше имя: </p>
-            <input  id="name" placeholder="write your name"> </input>
-
-
-            <p> Валюта депозита: </p>
-
-            <input id="r1" name="valute" type="radio"> Dollars
-            <input id="r2" name="valute" type="radio"> Euro
-            <input id="r3" name="valute" type="radio"> UAH
-
-            <p> Сумма депозита:(в грн)</p>
-            <input  class="sumdeposite" placeholder="write deposite UAH"> </input>
-
-
-            <p> Срок депозита</p>
-
-            <input id="r4"name="srok" type="radio"> 1 mon
-            <input id="r5" name="srok" type="radio"> 6 mon
-            <input id="r6" name="srok" type="radio"> 12 mon
-            <br>
-
-
-
-            <input type="button" class="result" value="Рассчитать"> </input>
-
-
-            <p> Доброго дня:        <span class="freename">         </span></p>
-
-
-            <p> Результат депозита:     <span class="freeresult"></span>        </p>
-
-        </form>
+        </div>
     </div>
-
-
-
-
-
-
-
-
-</div>
-</div>
-<footer class="footer">
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, iste? Corporis ratione repellendus inventore nulla omnis, magni culpa iste officia repudiandae molestiae ipsam ea nemo laborum ullam dolores deleniti recusandae.
-</footer>
-        <script src="js/scripts.js"></script>
+    <footer class="footer">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, iste? Corporis ratione repellendus inventore
+        nulla omnis, magni culpa iste officia repudiandae molestiae ipsam ea nemo laborum ullam dolores deleniti
+        recusandae.
+    </footer>
+    <script src="js/scripts.js"></script>
 
 </body>
+
 </html>
