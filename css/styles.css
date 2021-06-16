@@ -6,7 +6,11 @@
 }
 
 .grid {
-    display:flex;
+    display: flex;
+    flex-wrap: wrap;
+}
+.grid div {
+    width: 100%;
 }
 .aside {
     padding: 30px 20px;

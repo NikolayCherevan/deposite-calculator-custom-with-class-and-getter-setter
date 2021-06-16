@@ -83,6 +83,10 @@ class DepositCalculate {
 
 function setEventListenersValue() {
   document.getElementById('name').addEventListener('change', function (event) {
+    if(!isNaN(+event.target.value)){
+      alert('not valid format, pls type text')
+      return
+    }
     calculate.setName = event.target.value
   });
   document.querySelectorAll('[name="currency"]').forEach(item => {
@@ -109,7 +113,12 @@ function setEventListenersValue() {
     })
   })
   document.getElementById('sum_of_deposite').addEventListener('change', function (event) {
-    calculate.setDepositSum = event.target.value
+    if(isNaN(parseFloat(event.target.value))){
+      alert('not valid format, pls type number')
+      return
+    }
+    calculate.setDepositSum = +event.target.value;
+
   });
   document.getElementById('get_deposit_result').addEventListener('click', function (event) {
     if (!calculate.setName || !calculate.setDepositSum || !calculate.setActiveCurrency || !calculate.setTerm) {
@@ -121,7 +130,7 @@ function setEventListenersValue() {
       ` ${calculate.getdepositResult(calculate.setDepositSum,
          calculate.setPercentage, 
          calculate.getTermDays(calculate.setTerm),
-          calculate.getDaysInYear())} ${calculate.setActiveCurrency}`
+          calculate.getDaysInYear()).toFixed(2)} ${calculate.setActiveCurrency}`
       document.querySelector('.customer_name').innerHTML = calculate.setName;
     }
   });
