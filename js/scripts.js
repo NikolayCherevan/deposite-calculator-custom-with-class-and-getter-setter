@@ -28,7 +28,7 @@ class DepositCalculate {
     return (Date.UTC(start.getFullYear(), start.getMonth(), start.getDate()) - Date.UTC(start.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000;
   }
   getdepositResult(depositSum, percentage, term, daysInYear) {
-    return ((depositSum * percentage * term) / daysInYear)/100;
+    return ((depositSum * percentage * term) / daysInYear) / 100;
   }
   /**
    * @param {number} newValue
@@ -83,7 +83,7 @@ class DepositCalculate {
 
 function setEventListenersValue() {
   document.getElementById('name').addEventListener('change', function (event) {
-    if(!isNaN(+event.target.value)){
+    if (!isNaN(+event.target.value)) {
       alert('not valid format, pls type text')
       return
     }
@@ -113,7 +113,7 @@ function setEventListenersValue() {
     })
   })
   document.getElementById('sum_of_deposite').addEventListener('change', function (event) {
-    if(isNaN(parseFloat(event.target.value))){
+    if (isNaN(parseFloat(event.target.value))) {
       alert('not valid format, pls type number')
       return
     }
@@ -127,9 +127,9 @@ function setEventListenersValue() {
     }
     else {
       document.querySelector('.deposit_result_finally').innerHTML =
-      ` ${calculate.getdepositResult(calculate.setDepositSum,
-         calculate.setPercentage, 
-         calculate.getTermDays(calculate.setTerm),
+        ` ${calculate.getdepositResult(calculate.setDepositSum,
+          calculate.setPercentage,
+          calculate.getTermDays(calculate.setTerm),
           calculate.getDaysInYear()).toFixed(2)} ${calculate.setActiveCurrency}`
       document.querySelector('.customer_name').innerHTML = calculate.setName;
     }
